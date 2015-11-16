@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ABEB5E5C-0B38-4494-BA1D-C53D14512362</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Virtuoso</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9E14464A93ED01C3CAC1BDD2772A8FFD44BF2C1B</key>
+		<string>github.com:sikander-dev/Virtuoso.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Virtuoso.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9E14464A93ED01C3CAC1BDD2772A8FFD44BF2C1B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:sikander-dev/Virtuoso.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9E14464A93ED01C3CAC1BDD2772A8FFD44BF2C1B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9E14464A93ED01C3CAC1BDD2772A8FFD44BF2C1B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Virtuoso</string>
+		</dict>
+	</array>
+</dict>
+</plist>

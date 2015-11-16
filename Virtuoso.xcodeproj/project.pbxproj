@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1FC6D81BDE688600FCEE65 /* AlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1FC6D71BDE688600FCEE65 /* AlbumsViewController.m */; };
+		FA1FC6E11BDFB4B800FCEE65 /* AlbumInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */; };
+		FA1FC6E41BDFB6A300FCEE65 /* AlbumSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1FC6E31BDFB6A300FCEE65 /* AlbumSongsViewController.m */; };
 		FAD057601BDA1F7F00488444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD0575F1BDA1F7F00488444 /* main.m */; };
 		FAD057631BDA1F7F00488444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD057621BDA1F7F00488444 /* AppDelegate.m */; };
 		FAD057661BDA1F7F00488444 /* Virtuoso.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAD057641BDA1F7F00488444 /* Virtuoso.xcdatamodeld */; };
@@ -15,6 +18,10 @@
 		FAD0576E1BDA1F7F00488444 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD0576D1BDA1F7F00488444 /* Images.xcassets */; };
 		FAD057711BDA1F7F00488444 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD0576F1BDA1F7F00488444 /* LaunchScreen.xib */; };
 		FAD0577D1BDA1F7F00488444 /* VirtuosoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD0577C1BDA1F7F00488444 /* VirtuosoTests.m */; };
+		FAD057871BDA2FE200488444 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD057861BDA2FE200488444 /* MediaPlayer.framework */; };
+		FAD0578A1BDA4F1D00488444 /* MusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD057891BDA4F1D00488444 /* MusicViewController.m */; };
+		FAD0578D1BDA568D00488444 /* SongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD0578C1BDA568D00488444 /* SongsViewController.m */; };
+		FAEE496C1BE39EF8006ED818 /* NowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEE496B1BE39EF8006ED818 /* NowPlayingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA1FC6D61BDE688600FCEE65 /* AlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsViewController.h; sourceTree = "<group>"; };
+		FA1FC6D71BDE688600FCEE65 /* AlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsViewController.m; sourceTree = "<group>"; };
+		FA1FC6DF1BDFB4B800FCEE65 /* AlbumInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumInfoCell.h; sourceTree = "<group>"; };
+		FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumInfoCell.m; sourceTree = "<group>"; };
+		FA1FC6E21BDFB6A300FCEE65 /* AlbumSongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumSongsViewController.h; sourceTree = "<group>"; };
+		FA1FC6E31BDFB6A300FCEE65 /* AlbumSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSongsViewController.m; sourceTree = "<group>"; };
 		FAD0575A1BDA1F7F00488444 /* Virtuoso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Virtuoso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD0575E1BDA1F7F00488444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD0575F1BDA1F7F00488444 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +55,13 @@
 		FAD057761BDA1F7F00488444 /* VirtuosoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtuosoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD0577B1BDA1F7F00488444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD0577C1BDA1F7F00488444 /* VirtuosoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VirtuosoTests.m; sourceTree = "<group>"; };
+		FAD057861BDA2FE200488444 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		FAD057881BDA4F1D00488444 /* MusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicViewController.h; sourceTree = "<group>"; };
+		FAD057891BDA4F1D00488444 /* MusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicViewController.m; sourceTree = "<group>"; };
+		FAD0578B1BDA568D00488444 /* SongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongsViewController.h; sourceTree = "<group>"; };
+		FAD0578C1BDA568D00488444 /* SongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongsViewController.m; sourceTree = "<group>"; };
+		FAEE496A1BE39EF8006ED818 /* NowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingViewController.h; sourceTree = "<group>"; };
+		FAEE496B1BE39EF8006ED818 /* NowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD057871BDA2FE200488444 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +86,7 @@
 		FAD057511BDA1F7F00488444 = {
 			isa = PBXGroup;
 			children = (
+				FAD057861BDA2FE200488444 /* MediaPlayer.framework */,
 				FAD0575C1BDA1F7F00488444 /* Virtuoso */,
 				FAD057791BDA1F7F00488444 /* VirtuosoTests */,
 				FAD0575B1BDA1F7F00488444 /* Products */,
@@ -87,7 +109,19 @@
 				FAD057621BDA1F7F00488444 /* AppDelegate.m */,
 				FAD057671BDA1F7F00488444 /* ViewController.h */,
 				FAD057681BDA1F7F00488444 /* ViewController.m */,
+				FA1FC6DF1BDFB4B800FCEE65 /* AlbumInfoCell.h */,
+				FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */,
 				FAD0576A1BDA1F7F00488444 /* Main.storyboard */,
+				FA1FC6D61BDE688600FCEE65 /* AlbumsViewController.h */,
+				FA1FC6D71BDE688600FCEE65 /* AlbumsViewController.m */,
+				FAEE496A1BE39EF8006ED818 /* NowPlayingViewController.h */,
+				FAEE496B1BE39EF8006ED818 /* NowPlayingViewController.m */,
+				FA1FC6E21BDFB6A300FCEE65 /* AlbumSongsViewController.h */,
+				FA1FC6E31BDFB6A300FCEE65 /* AlbumSongsViewController.m */,
+				FAD0578B1BDA568D00488444 /* SongsViewController.h */,
+				FAD0578C1BDA568D00488444 /* SongsViewController.m */,
+				FAD057881BDA4F1D00488444 /* MusicViewController.h */,
+				FAD057891BDA4F1D00488444 /* MusicViewController.m */,
 				FAD0576D1BDA1F7F00488444 /* Images.xcassets */,
 				FAD0576F1BDA1F7F00488444 /* LaunchScreen.xib */,
 				FAD057641BDA1F7F00488444 /* Virtuoso.xcdatamodeld */,
@@ -166,11 +200,12 @@
 		FAD057521BDA1F7F00488444 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = sikander.m;
 				TargetAttributes = {
 					FAD057591BDA1F7F00488444 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = J3N2H5L77G;
 					};
 					FAD057751BDA1F7F00488444 = {
 						CreatedOnToolsVersion = 6.4;
@@ -222,10 +257,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1FC6E41BDFB6A300FCEE65 /* AlbumSongsViewController.m in Sources */,
+				FA1FC6E11BDFB4B800FCEE65 /* AlbumInfoCell.m in Sources */,
+				FAEE496C1BE39EF8006ED818 /* NowPlayingViewController.m in Sources */,
 				FAD057631BDA1F7F00488444 /* AppDelegate.m in Sources */,
+				FA1FC6D81BDE688600FCEE65 /* AlbumsViewController.m in Sources */,
+				FAD0578A1BDA4F1D00488444 /* MusicViewController.m in Sources */,
 				FAD057661BDA1F7F00488444 /* Virtuoso.xcdatamodeld in Sources */,
 				FAD057691BDA1F7F00488444 /* ViewController.m in Sources */,
 				FAD057601BDA1F7F00488444 /* main.m in Sources */,
+				FAD0578D1BDA568D00488444 /* SongsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +329,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -353,9 +395,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Virtuoso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Directi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -363,9 +409,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Virtuoso/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Directi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -383,6 +433,7 @@
 				);
 				INFOPLIST_FILE = VirtuosoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Directi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Virtuoso.app/Virtuoso";
 			};
@@ -398,6 +449,7 @@
 				);
 				INFOPLIST_FILE = VirtuosoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Directi.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Virtuoso.app/Virtuoso";
 			};
@@ -422,6 +474,7 @@
 				FAD057821BDA1F7F00488444 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAD057831BDA1F7F00488444 /* Build configuration list for PBXNativeTarget "VirtuosoTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +483,7 @@
 				FAD057851BDA1F7F00488444 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
