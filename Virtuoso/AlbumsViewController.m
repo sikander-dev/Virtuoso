@@ -24,6 +24,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    /*
+    MPMediaQuery *albumsQuery = [MPMediaQuery albumsQuery];
+    NSArray *albums = [albumsQuery collections];
+    for (MPMediaItemCollection *album in albums) {
+        NSLog(@"%@", [[album representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]);
+    }
+     */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,11 +116,11 @@
     // Pass the selected object to the new view controller.
     AlbumSongsViewController *albumSongsViewController = [segue destinationViewController];
     MPMediaQuery *albumsQuery = [MPMediaQuery albumsQuery];
-    NSArray *albums = [albumsQuery items];
-    MPMediaItem *selectedAlbum = albums[[[self.tableView indexPathForSelectedRow] row]];
+    NSArray *albums = [albumsQuery collections];
+    MPMediaItem *selectedAlbum = [albums[[[self.tableView indexPathForSelectedRow] row]] representativeItem];
     albumSongsViewController.albumTitle = [selectedAlbum valueForProperty:MPMediaItemPropertyAlbumTitle];
     albumSongsViewController.albumArtist = [selectedAlbum valueForProperty:MPMediaItemPropertyAlbumArtist];
-    NSLog(@"AlbumSViewController prepared for segue");
+    //NSLog(@"AlbumsViewController prepared for segue");
 }
 
 @end

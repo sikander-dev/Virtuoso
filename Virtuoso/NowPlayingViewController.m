@@ -7,6 +7,8 @@
 //
 
 #import "NowPlayingViewController.h"
+#import "PlaybackDurationToStringConverter.h"
+#import "YTResultsViewController.h"
 
 @interface NowPlayingViewController ()
 
@@ -16,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (weak, nonatomic) IBOutlet UIView *volumeViewParentView;
 @property (weak, nonatomic) IBOutlet UISlider *nowPlayingSlider;
+@property (weak, nonatomic) IBOutlet UILabel *playbackDurationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentPlaybackTimeLabel;
 @end
 
 @implementation NowPlayingViewController
@@ -49,6 +53,18 @@
     
     [self updateCurrentPlaybackTime];
     
+    [self updatePlaybackDuration];
+    
+}
+
+- (void)updatePlaybackDuration {
+    if (self.musicPlayer.nowPlayingItem) {
+        NSNumber *songDuration = [self.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyPlaybackDuration];
+        self.playbackDurationLabel.text = [PlaybackDurationToStringConverter getStringFromPlaybackDuration:songDuration];
+    }
+    else {
+        self.playbackDurationLabel.text = @"";
+    }
 }
 
 - (void)updatePlayPauseButton {
@@ -115,6 +131,7 @@
     
     [self updateArtwork];
     [self updateInfoLabels];
+    [self updatePlaybackDuration];
 }
 
 - (void)handlePlaybackStateChanged:(id)notification {
@@ -151,14 +168,29 @@
     [self.musicPlayer endGeneratingPlaybackNotifications];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"YT Results Segue"]) {
+        YTResultsViewController *destinationViewController = [segue destinationViewController];
+        MPMediaItem *currentSong = [self.musicPlayer nowPlayingItem];
+        destinationViewController.queryString = [NSString stringWithFormat:@"%@ %@", [currentSong valueForProperty:MPMediaItemPropertyTitle], [currentSong valueForProperty:MPMediaItemPropertyArtist]];
+    }
+    
 }
-*/
 
 @end
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,7 @@
 #import "AlbumSongsViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "AlbumInfoCell.h"
+#import "PlaybackDurationToStringConverter.h"
 
 @interface AlbumSongsViewController ()
 
@@ -24,9 +25,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    NSLog(@"AlbumSongsViewController being loaded");
+    //NSLog(@"AlbumSongsViewController being loaded");
     [self setAlbumProperties];
-    NSLog(@"Album properties set");
+    //NSLog(@"Album properties set");
     self.title = self.albumTitle;
     [self.tableView reloadData];
 }
@@ -40,7 +41,7 @@
     self.albumSongs = [albumQuery items];
     self.albumDurationInSec = 0;
     for (MPMediaItem *song in self.albumSongs) {
-        self.albumDurationInSec += (NSUInteger)[song valueForProperty:MPMediaItemPropertyPlaybackDuration];
+        self.albumDurationInSec += (NSUInteger)[[song valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
     }
     for (MPMediaItem *song in self.albumSongs) {
         UIImage *artworkImage = [[song valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:CGSizeMake(1, 1)];
@@ -48,6 +49,9 @@
             self.albumArtwork = artworkImage;
             break;
         }
+    }
+    if (!self.albumArtwork) {
+        self.albumArtwork = [UIImage imageNamed:@"no_artwork_image"];
     }
     for (MPMediaItem *song in self.albumSongs) {
         NSString *albumYear = [song valueForProperty:@"year"];
@@ -74,26 +78,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    NSLog(@"No. of rows = %lu", [self.albumSongs count] + 1);
+    //NSLog(@"No. of rows = %lu", [self.albumSongs count] + 1);
     return ([self.albumSongs count] + 1);
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"cellForRowAtIndexPath called for %lu", indexPath.row);
+    //NSLog(@"cellForRowAtIndexPath called for %lu", indexPath.row);
     if (indexPath.row == 0) {
         AlbumInfoCell *cell = (AlbumInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"Album Info Cell" forIndexPath:indexPath];
         cell.albumArtistLabel.text = self.albumArtist;
-        cell.albumDurationLabel.text = [NSString stringWithFormat:@"%lu songs %lum %lus", (unsigned long)[self.albumSongs count], self.albumDurationInSec/60, self.albumDurationInSec % 60];
+        cell.albumDurationLabel.text = [PlaybackDurationToStringConverter getStringFromPlaybackDuration:[NSNumber numberWithUnsignedInteger:self.albumDurationInSec]];
         cell.albumYearLabel.text = [NSString stringWithFormat:@"%@", self.albumYear];
+        cell.albumArtworkImageView.image = self.albumArtwork;
         return cell;
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Album Song Cell" forIndexPath:indexPath];
         MPMediaItem *song = self.albumSongs[indexPath.row-1];
         cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
-        NSUInteger songDuration = (NSUInteger)[song valueForProperty:MPMediaItemPropertyPlaybackDuration];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu:%lu", songDuration/60, songDuration%60];
+        NSNumber *songDuration = [song valueForProperty:MPMediaItemPropertyPlaybackDuration];
+        //NSLog(@"%@", songDuration);
+        cell.detailTextLabel.text = [PlaybackDurationToStringConverter getStringFromPlaybackDuration:songDuration];
         return cell;
     }
 }
