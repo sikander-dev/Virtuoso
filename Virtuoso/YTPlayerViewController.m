@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSDictionary *playerVars = @{@"playsinline" : @1};
-    [self.playerView loadWithVideoId:self.videoID];// playerVars:playerVars];
+    NSDictionary *playerVars = @{@"playsinline" : @1, @"origin" : @"https://www.youtube.com"};
+    [self.playerView loadWithVideoId:self.videoID playerVars:playerVars];
     
 }
 

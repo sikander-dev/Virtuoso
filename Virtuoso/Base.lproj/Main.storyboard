@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -504,12 +505,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10K-7q-WXV" customClass="YTPlayerView">
-                                <rect key="frame" x="20" y="72" width="280" height="223"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10K-7q-WXV" customClass="YTPlayerView">
+                                <rect key="frame" x="16" y="72" width="288" height="227"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="10K-7q-WXV" secondAttribute="height" multiplier="280:220" id="bbS-W0-cce"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="10K-7q-WXV" firstAttribute="trailing" secondItem="rG8-1v-EPO" secondAttribute="trailingMargin" id="6FM-Td-ufF"/>
+                            <constraint firstItem="10K-7q-WXV" firstAttribute="leading" secondItem="rG8-1v-EPO" secondAttribute="leadingMargin" id="Aka-0p-mc6"/>
+                            <constraint firstItem="10K-7q-WXV" firstAttribute="top" secondItem="N1l-9F-ZOM" secondAttribute="bottom" constant="8" id="no1-14-fnu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SLU-hw-Y15"/>
                     <connections>
