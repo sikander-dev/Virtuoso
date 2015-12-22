@@ -10,4 +10,6 @@
 
 @interface MusicViewController : UITableViewController
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end

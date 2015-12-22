@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1692C81C2993CC00E1FCD4 /* PlaylistSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1692C71C2993CC00E1FCD4 /* PlaylistSongsViewController.m */; };
 		FA1FC6D81BDE688600FCEE65 /* AlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1FC6D71BDE688600FCEE65 /* AlbumsViewController.m */; };
 		FA1FC6E11BDFB4B800FCEE65 /* AlbumInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */; };
 		FA1FC6E41BDFB6A300FCEE65 /* AlbumSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1FC6E31BDFB6A300FCEE65 /* AlbumSongsViewController.m */; };
+		FA8A3D791C19A9DA00C1D7F2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA8A3D771C19A9DA00C1D7F2 /* Model.xcdatamodeld */; };
+		FA8A3D821C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8A3D7B1C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.m */; };
+		FA8A3D831C1AE56C00C1D7F2 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8A3D7D1C1AE56C00C1D7F2 /* Playlist.m */; };
+		FA8A3D841C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8A3D7F1C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.m */; };
+		FA8A3D851C1AE56C00C1D7F2 /* PlaylistTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8A3D811C1AE56C00C1D7F2 /* PlaylistTracks.m */; };
+		FAA390571C282EEB00EFAE19 /* PlaylistSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA390561C282EEB00EFAE19 /* PlaylistSelectionViewController.m */; };
 		FAD057601BDA1F7F00488444 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD0575F1BDA1F7F00488444 /* main.m */; };
 		FAD057631BDA1F7F00488444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD057621BDA1F7F00488444 /* AppDelegate.m */; };
 		FAD057661BDA1F7F00488444 /* Virtuoso.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAD057641BDA1F7F00488444 /* Virtuoso.xcdatamodeld */; };
@@ -44,6 +51,8 @@
 		FAF417821C0EE6A800E88DE3 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF417801C0EE6A800E88DE3 /* YTPlayerView.m */; };
 		FAF417841C0EEA1A00E88DE3 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAF417831C0EEA1A00E88DE3 /* Assets.bundle */; };
 		FAF417871C0F125600E88DE3 /* YTPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF417861C0F125600E88DE3 /* YTPlayerViewController.m */; };
+		FAFE07C31C1EFB7600D32D0F /* PlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFE07C21C1EFB7600D32D0F /* PlaylistsViewController.m */; };
+		FAFE07C61C24173900D32D0F /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFE07C51C24173900D32D0F /* SongTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +66,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA1692C61C2993CC00E1FCD4 /* PlaylistSongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistSongsViewController.h; sourceTree = "<group>"; };
+		FA1692C71C2993CC00E1FCD4 /* PlaylistSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistSongsViewController.m; sourceTree = "<group>"; };
 		FA1FC6D61BDE688600FCEE65 /* AlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsViewController.h; sourceTree = "<group>"; };
 		FA1FC6D71BDE688600FCEE65 /* AlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumsViewController.m; sourceTree = "<group>"; };
 		FA1FC6DF1BDFB4B800FCEE65 /* AlbumInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumInfoCell.h; sourceTree = "<group>"; };
 		FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumInfoCell.m; sourceTree = "<group>"; };
 		FA1FC6E21BDFB6A300FCEE65 /* AlbumSongsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumSongsViewController.h; sourceTree = "<group>"; };
 		FA1FC6E31BDFB6A300FCEE65 /* AlbumSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSongsViewController.m; sourceTree = "<group>"; };
+		FA8A3D781C19A9DA00C1D7F2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		FA8A3D7A1C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Playlist+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FA8A3D7B1C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Playlist+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FA8A3D7C1C1AE56C00C1D7F2 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		FA8A3D7D1C1AE56C00C1D7F2 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
+		FA8A3D7E1C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaylistTracks+CoreDataProperties.h"; sourceTree = "<group>"; };
+		FA8A3D7F1C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaylistTracks+CoreDataProperties.m"; sourceTree = "<group>"; };
+		FA8A3D801C1AE56C00C1D7F2 /* PlaylistTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistTracks.h; sourceTree = "<group>"; };
+		FA8A3D811C1AE56C00C1D7F2 /* PlaylistTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistTracks.m; sourceTree = "<group>"; };
+		FAA390551C282EEB00EFAE19 /* PlaylistSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistSelectionViewController.h; sourceTree = "<group>"; };
+		FAA390561C282EEB00EFAE19 /* PlaylistSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistSelectionViewController.m; sourceTree = "<group>"; };
 		FAD0575A1BDA1F7F00488444 /* Virtuoso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Virtuoso.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD0575E1BDA1F7F00488444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD0575F1BDA1F7F00488444 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,6 +152,10 @@
 		FAF417831C0EEA1A00E88DE3 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Assets.bundle; path = "../../../Downloads/youtube-ios-player-helper-master/youtube-ios-player-helper/Assets.bundle"; sourceTree = "<group>"; };
 		FAF417851C0F125600E88DE3 /* YTPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerViewController.h; sourceTree = "<group>"; };
 		FAF417861C0F125600E88DE3 /* YTPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerViewController.m; sourceTree = "<group>"; };
+		FAFE07C11C1EFB7600D32D0F /* PlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistsViewController.h; sourceTree = "<group>"; };
+		FAFE07C21C1EFB7600D32D0F /* PlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistsViewController.m; sourceTree = "<group>"; };
+		FAFE07C41C24173900D32D0F /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
+		FAFE07C51C24173900D32D0F /* SongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +199,16 @@
 		FAD0575C1BDA1F7F00488444 /* Virtuoso */ = {
 			isa = PBXGroup;
 			children = (
+				FA1692C61C2993CC00E1FCD4 /* PlaylistSongsViewController.h */,
+				FA1692C71C2993CC00E1FCD4 /* PlaylistSongsViewController.m */,
+				FA8A3D7A1C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.h */,
+				FA8A3D7B1C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.m */,
+				FA8A3D7C1C1AE56C00C1D7F2 /* Playlist.h */,
+				FA8A3D7D1C1AE56C00C1D7F2 /* Playlist.m */,
+				FA8A3D7E1C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.h */,
+				FA8A3D7F1C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.m */,
+				FA8A3D801C1AE56C00C1D7F2 /* PlaylistTracks.h */,
+				FA8A3D811C1AE56C00C1D7F2 /* PlaylistTracks.m */,
 				FAD057611BDA1F7F00488444 /* AppDelegate.h */,
 				FAD057621BDA1F7F00488444 /* AppDelegate.m */,
 				FAF417461C0DC95B00E88DE3 /* AFNetworking */,
@@ -182,6 +218,13 @@
 				FA1FC6DF1BDFB4B800FCEE65 /* AlbumInfoCell.h */,
 				FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */,
 				FAD0576A1BDA1F7F00488444 /* Main.storyboard */,
+				FAA390551C282EEB00EFAE19 /* PlaylistSelectionViewController.h */,
+				FAA390561C282EEB00EFAE19 /* PlaylistSelectionViewController.m */,
+				FAFE07C41C24173900D32D0F /* SongTableViewCell.h */,
+				FAFE07C51C24173900D32D0F /* SongTableViewCell.m */,
+				FAFE07C11C1EFB7600D32D0F /* PlaylistsViewController.h */,
+				FAFE07C21C1EFB7600D32D0F /* PlaylistsViewController.m */,
+				FA8A3D771C19A9DA00C1D7F2 /* Model.xcdatamodeld */,
 				FAF417851C0F125600E88DE3 /* YTPlayerViewController.h */,
 				FAF417861C0F125600E88DE3 /* YTPlayerViewController.m */,
 				FA1FC6D61BDE688600FCEE65 /* AlbumsViewController.h */,
@@ -398,6 +441,7 @@
 				FAF417761C0DC95B00E88DE3 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FAF417821C0EE6A800E88DE3 /* YTPlayerView.m in Sources */,
 				FAEE496C1BE39EF8006ED818 /* NowPlayingViewController.m in Sources */,
+				FA8A3D821C1AE56C00C1D7F2 /* Playlist+CoreDataProperties.m in Sources */,
 				FAF417721C0DC95B00E88DE3 /* AFURLConnectionOperation.m in Sources */,
 				FAF4176E1C0DC95B00E88DE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				FAD057631BDA1F7F00488444 /* AppDelegate.m in Sources */,
@@ -409,13 +453,21 @@
 				FAF417731C0DC95B00E88DE3 /* AFURLRequestSerialization.m in Sources */,
 				FAD057661BDA1F7F00488444 /* Virtuoso.xcdatamodeld in Sources */,
 				FAF417741C0DC95B00E88DE3 /* AFURLResponseSerialization.m in Sources */,
+				FA8A3D841C1AE56C00C1D7F2 /* PlaylistTracks+CoreDataProperties.m in Sources */,
 				FAD057691BDA1F7F00488444 /* ViewController.m in Sources */,
+				FA8A3D831C1AE56C00C1D7F2 /* Playlist.m in Sources */,
 				FAF417771C0DC95B00E88DE3 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				FAA390571C282EEB00EFAE19 /* PlaylistSelectionViewController.m in Sources */,
+				FA1692C81C2993CC00E1FCD4 /* PlaylistSongsViewController.m in Sources */,
 				FAF4177C1C0DC95B00E88DE3 /* UIRefreshControl+AFNetworking.m in Sources */,
 				FAF4177B1C0DC95B00E88DE3 /* UIProgressView+AFNetworking.m in Sources */,
 				FAF417871C0F125600E88DE3 /* YTPlayerViewController.m in Sources */,
+				FA8A3D851C1AE56C00C1D7F2 /* PlaylistTracks.m in Sources */,
 				FAD057601BDA1F7F00488444 /* main.m in Sources */,
+				FA8A3D791C19A9DA00C1D7F2 /* Model.xcdatamodeld in Sources */,
+				FAFE07C61C24173900D32D0F /* SongTableViewCell.m in Sources */,
 				FAF4177D1C0DC95B00E88DE3 /* UIWebView+AFNetworking.m in Sources */,
+				FAFE07C31C1EFB7600D32D0F /* PlaylistsViewController.m in Sources */,
 				FAF4176F1C0DC95B00E88DE3 /* AFHTTPSessionManager.m in Sources */,
 				FAF417451C0DC0D100E88DE3 /* YTResultsViewController.m in Sources */,
 				FAD0578D1BDA568D00488444 /* SongsViewController.m in Sources */,
@@ -640,6 +692,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		FA8A3D771C19A9DA00C1D7F2 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA8A3D781C19A9DA00C1D7F2 /* Model.xcdatamodel */,
+			);
+			currentVersion = FA8A3D781C19A9DA00C1D7F2 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		FAD057641BDA1F7F00488444 /* Virtuoso.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MusicViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *navigationController = [[tabBarController viewControllers] firstObject];
+    MusicViewController *musicViewController = (MusicViewController *)navigationController.topViewController;
+    musicViewController.managedObjectContext = self.managedObjectContext;
     return YES;
 }
 

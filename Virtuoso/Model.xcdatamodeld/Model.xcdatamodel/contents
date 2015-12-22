@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaylistTracks" inverseName="playlist" inverseEntity="PlaylistTracks" syncable="YES"/>
+    </entity>
+    <entity name="PlaylistTracks" representedClassName="PlaylistTracks" syncable="YES">
+        <attribute name="persistentId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="tracks" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Playlist" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="PlaylistTracks" positionX="115" positionY="18" width="128" height="73"/>
+    </elements>
+</model>
