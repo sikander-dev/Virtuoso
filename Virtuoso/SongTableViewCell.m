@@ -7,10 +7,11 @@
 //
 
 #import "SongTableViewCell.h"
+#import "PlaylistTracks.h"
 
 @interface SongTableViewCell ()
 
-@property (weak, nonatomic) Playlist *selectedPlaylist;
+//@property (weak, nonatomic) Playlist *selectedPlaylist;
 
 @end
 
@@ -28,14 +29,14 @@
 
 - (void)addActionAddToPlaylist {
     UIAlertAction *addToPlaylistAction = [UIAlertAction actionWithTitle:@"Add to playlist" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        ;
+        [self.delegate segueWithIdentifier:@"Playlist Selection Segue" fromCell:self];
     }];
     [self.alertController addAction:addToPlaylistAction];
 }
 
 - (void)addActionRemoveFromPlaylist {
     UIAlertAction *removeFromPlaylistAction = [UIAlertAction actionWithTitle:@"Remove from playlist" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        ;
+        [self.managedObjectContext deleteObject:self.playlistTrackObject];
     }];
     [self.alertController addAction:removeFromPlaylistAction];
 }
@@ -46,6 +47,9 @@
     // Configure the view for the selected state
 }
 
-- (void)selectedPlaylist:(Playlist *)playlist
+- (void)selectedPlaylist:(Playlist *)playlist {
+    //self.selectedPlaylist = playlist;
+    [PlaylistTracks addPlaylistTrackWithPersistentId:[self.song valueForKey:MPMediaItemPropertyPersistentID] inPlaylist:playlist inManagedObjectContext:self.managedObjectContext];
+}
 
 @end

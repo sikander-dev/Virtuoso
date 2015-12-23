@@ -8,6 +8,7 @@
 
 #import "PlaylistsViewController.h"
 #import "Playlist.h"
+#import "PlaylistSongsViewController.h"
 
 @interface PlaylistsViewController ()
 
@@ -195,14 +196,22 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue destinationViewController] isKindOfClass:[PlaylistSongsViewController class]]) {
+        PlaylistSongsViewController *playlistSongsViewController = [segue destinationViewController];
+        [playlistSongsViewController setPlaylist:[[self fetchedResultsController] objectAtIndexPath:[self.tableView indexPathForSelectedRow]]];
+        [playlistSongsViewController setManagedObjectContext:self.managedObjectContext];
+    }
 }
-*/
 
 @end
+
+
+
+
+
