@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kSU-DT-C0p">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -287,6 +286,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Rc-nz-BZT">
                                             <rect key="frame" x="259" y="7" width="30" height="30"/>
                                             <state key="normal" title="..."/>
+                                            <connections>
+                                                <action selector="showOptions:" destination="UrR-GB-RPL" eventType="touchUpInside" id="fRg-F7-dk1"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmU-ok-g2N">
                                             <rect key="frame" x="16" y="8" width="32" height="24"/>
@@ -438,31 +440,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Song Cell" textLabel="OLs-ph-RNO" detailTextLabel="ert-PP-FdU" style="IBUITableViewCellStyleSubtitle" id="F3t-7J-BEM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Song Cell" id="Gwn-cq-CWY" customClass="SongTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F3t-7J-BEM" id="Tuu-2H-ba8">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gwn-cq-CWY" id="WjK-Xi-NSW">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OLs-ph-RNO">
-                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1b-Z8-rWl">
+                                            <rect key="frame" x="259" y="7" width="30" height="30"/>
+                                            <state key="normal" title="..."/>
+                                            <connections>
+                                                <action selector="showOptions:" destination="Gwn-cq-CWY" eventType="touchUpInside" id="rbb-En-hIQ"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIn-5J-vaD">
+                                            <rect key="frame" x="16" y="8" width="32" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ert-PP-FdU">
-                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMq-K9-5Af">
+                                            <rect key="frame" x="16" y="30" width="41" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UIn-5J-vaD" firstAttribute="leading" secondItem="WjK-Xi-NSW" secondAttribute="leadingMargin" constant="8" id="Hef-1B-vdR"/>
+                                        <constraint firstItem="UIn-5J-vaD" firstAttribute="leading" secondItem="tMq-K9-5Af" secondAttribute="leading" id="NxF-nL-4rR"/>
+                                        <constraint firstItem="UIn-5J-vaD" firstAttribute="top" secondItem="WjK-Xi-NSW" secondAttribute="topMargin" constant="1" id="YpZ-ti-shF"/>
+                                        <constraint firstItem="tMq-K9-5Af" firstAttribute="top" secondItem="UIn-5J-vaD" secondAttribute="bottom" constant="1" id="hKX-0m-1aO"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="DwK-pD-Ixe" kind="push" id="kph-cq-Thv"/>
+                                    <outlet property="customCellDetailTextLabel" destination="tMq-K9-5Af" id="qkS-pH-aKo"/>
+                                    <outlet property="customCellTextLabel" destination="UIn-5J-vaD" id="g61-mQ-5iW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

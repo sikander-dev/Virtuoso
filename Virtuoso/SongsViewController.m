@@ -48,14 +48,17 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Song Cell" forIndexPath:indexPath];
+    SongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Song Cell" forIndexPath:indexPath];
     
     // Configure the cell...
     MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
     NSArray *songs = [songsQuery items];
     MPMediaItem *song = songs[indexPath.row];
-    cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
-    cell.detailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
+    cell.customCellTextLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
+    cell.customCellDetailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
+    [cell setPerformSegueDelegate:self];
+    [cell setShowAlertControllerDelegate:self];
+    [cell addActionAddToPlaylist];
     return cell;
 }
 
@@ -94,20 +97,31 @@
 }
 */
 
+- (void)showAlertController:(UIAlertController *)alertController {
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 #pragma mark - Navigation
+
+- (void)segueWithIdentifier:(NSString *)identifier fromCell:(UITableViewCell *)cell{
+    [self performSegueWithIdentifier:identifier sender:cell];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
-    NSArray *songs = [songsQuery items];
-    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-    [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:songs]];
-    [musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]]];
-    [musicPlayer play];
+    if ([[segue identifier] isEqualToString:@"Playlist Selection Segue"]) {
+        PlaylistSelectionViewController *playlistSelectionViewController = [segue destinationViewController];
+        [playlistSelectionViewController setDelegate:sender];
+    } else {
+        MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
+        NSArray *songs = [songsQuery items];
+        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+        [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:songs]];
+        [musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]]];
+        [musicPlayer play];
+    }
 }
 
 

@@ -17,6 +17,12 @@
 
 @end
 
+@protocol ShowAlertControllerDelegate <NSObject>
+
+- (void)showAlertController:(UIAlertController *)alertController;
+
+@end
+
 @interface SongTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *customCellTextLabel;
@@ -27,7 +33,8 @@
 
 @property (weak, nonatomic) PlaylistTracks *playlistTrackObject;
 
-@property (weak, nonatomic) id<PerformSegueDelegate> delegate;
+@property (weak, nonatomic) id<PerformSegueDelegate> performSegueDelegate;
+@property (weak, nonatomic) id<ShowAlertControllerDelegate> showAlertControllerDelegate;
 
 - (void)addActionAddToPlaylist;
 

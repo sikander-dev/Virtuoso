@@ -11,7 +11,7 @@
 #import "Playlist.h"
 #import "SongTableViewCell.h"
 
-@interface PlaylistSongsViewController : UITableViewController <NSFetchedResultsControllerDelegate, PerformSegueDelegate>
+@interface PlaylistSongsViewController : UITableViewController <NSFetchedResultsControllerDelegate, ShowAlertControllerDelegate>
 
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) Playlist *playlist;

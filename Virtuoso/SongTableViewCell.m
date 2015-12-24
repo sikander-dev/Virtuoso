@@ -26,10 +26,13 @@
     self.alertController = [UIAlertController alertControllerWithTitle:@"More Options" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
 }
+- (IBAction)showOptions:(UIButton *)sender {
+    [self.showAlertControllerDelegate showAlertController:self.alertController];
+}
 
 - (void)addActionAddToPlaylist {
     UIAlertAction *addToPlaylistAction = [UIAlertAction actionWithTitle:@"Add to playlist" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self.delegate segueWithIdentifier:@"Playlist Selection Segue" fromCell:self];
+        [self.performSegueDelegate segueWithIdentifier:@"Playlist Selection Segue" fromCell:self];
     }];
     [self.alertController addAction:addToPlaylistAction];
 }

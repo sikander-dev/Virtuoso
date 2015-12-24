@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SongTableViewCell.h"
+#import "PlaylistSelectionViewController.h"
 
-@interface SongsViewController : UITableViewController
+@interface SongsViewController : UITableViewController <PerformSegueDelegate, ShowAlertControllerDelegate>
 
 @end

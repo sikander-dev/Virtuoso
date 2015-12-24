@@ -75,6 +75,7 @@
     songTableViewCell.customCellTextLabel.text = [song valueForKey:MPMediaItemPropertyTitle];
     songTableViewCell.customCellDetailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
     songTableViewCell.playlistTrackObject = playlistTrack;
+    [cell setShowAlertControllerDelegate:self];
     [songTableViewCell addActionAddToPlaylist];
     [songTableViewCell addActionRemoveFromPlaylist];
 }
@@ -135,26 +136,21 @@
     [[self tableView] endUpdates];
 }
 
+- (void)showAlertController:(UIAlertController *)alertController {
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 #pragma mark - Navigation
-
-- (void)segueWithIdentifier:(NSString *)identifier fromCell:(UITableViewCell *)cell{
-    [self performSegueWithIdentifier:identifier sender:cell];
-}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"Playlist Selection Segue"]) {
-        PlaylistSelectionViewController *playlistSelectionViewController = [segue destinationViewController];
-        [playlistSelectionViewController setDelegate:sender];
-    } else {
-        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-        [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:self.songArray]];
-        [musicPlayer setNowPlayingItem:self.songArray[[[self.tableView indexPathForSelectedRow] row]]];
-        [musicPlayer play];
-    }
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:self.songArray]];
+    [musicPlayer setNowPlayingItem:self.songArray[[[self.tableView indexPathForSelectedRow] row]]];
+    [musicPlayer play];
+
 }
 
 
