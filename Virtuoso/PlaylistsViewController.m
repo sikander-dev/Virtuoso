@@ -30,12 +30,12 @@
 }
 
 - (void)initializeFetchedResultsController {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"name"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Playlist"];
     NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     [request setSortDescriptors:@[nameSort]];
     
     [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil]];
-    [[self fetchedResultsController] setPerformSegueDelegate:self];
+    [[self fetchedResultsController] setDelegate:self];
     
     NSError *error = nil;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -54,11 +54,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections
     return [[[self fetchedResultsController] sections] count];
+    //return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return [[[self fetchedResultsController] sections][section] numberOfObjects] + 1;
+    return [[[self fetchedResultsController] sections][section] numberOfObjects];
 }
 
 - (void)configureCell:(id)cell atIndexPath:(NSIndexPath*)indexPath {
@@ -70,17 +71,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Add Playlist Cell" forIndexPath:indexPath];
-        return cell;
-    }
-    else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Playlist Cell" forIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
-        return cell;
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Playlist Cell" forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 }
 
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
@@ -106,6 +102,31 @@
     }
     
 }
+*/
+
+- (IBAction)addNewPlaylist:(UIButton *)sender {
+    
+    UIAlertController *newPlaylistAlert = [UIAlertController alertControllerWithTitle:@"New Playlist" message:@"Enter the name of your playlist" preferredStyle:UIAlertControllerStyleAlert];
+    [newPlaylistAlert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        [textField setDelegate:self];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+    }];
+    UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        NSString *playlistName = [[newPlaylistAlert textFields] firstObject].text;
+        BOOL isNewPlaylistCreated = [Playlist addNewPlaylistWithName:playlistName inManagedObjectContext:self.managedObjectContext];
+        if (!isNewPlaylistCreated) {
+            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:@"Playlist with name (%@) already exists", playlistName] preferredStyle:UIAlertControllerStyleAlert];
+            [errorAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+            }]];
+            [self presentViewController:errorAlert animated:YES completion:nil];
+        }
+    }];
+    [newPlaylistAlert addAction:cancelAction];
+    [newPlaylistAlert addAction:doneAction];
+    [self presentViewController:newPlaylistAlert animated:YES completion:nil];
+}
+
 
 + (NSCharacterSet *)blockedCharacterSet {
     static NSCharacterSet *blockedCharacters = nil;
@@ -141,9 +162,10 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    //NSLog(@"indexPath.row = %lu\nnewIndexPath.row = %lu", indexPath.row, newIndexPath.row);
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            [[self tableView] insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [[self tableView] insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         case NSFetchedResultsChangeDelete:
             [[self tableView] deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

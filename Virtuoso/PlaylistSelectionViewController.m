@@ -32,7 +32,7 @@
     NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     [request setSortDescriptors:@[nameSort]];
     [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil]];
-    [[self fetchedResultsController] setPerformSegueDelegate:self];
+    [[self fetchedResultsController] setDelegate:self];
     
     NSError *error = nil;
     if (![[self fetchedResultsController] performFetch:&error]) {

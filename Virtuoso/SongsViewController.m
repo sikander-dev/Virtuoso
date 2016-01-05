@@ -56,6 +56,8 @@
     MPMediaItem *song = songs[indexPath.row];
     cell.customCellTextLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
     cell.customCellDetailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
+    cell.song = song;
+    cell.managedObjectContext = self.managedObjectContext;
     [cell setPerformSegueDelegate:self];
     [cell setShowAlertControllerDelegate:self];
     [cell addActionAddToPlaylist];
@@ -103,7 +105,7 @@
 
 #pragma mark - Navigation
 
-- (void)segueWithIdentifier:(NSString *)identifier fromCell:(UITableViewCell *)cell{
+- (void)segueWithIdentifier:(NSString *)identifier fromCell:(SongTableViewCell *)cell{
     [self performSegueWithIdentifier:identifier sender:cell];
 }
 
@@ -113,13 +115,28 @@
     // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqualToString:@"Playlist Selection Segue"]) {
         PlaylistSelectionViewController *playlistSelectionViewController = [segue destinationViewController];
-        [playlistSelectionViewController setDelegate:sender];
+        SongTableViewCell *cell = (SongTableViewCell *)sender;
+        //NSLog(@"sender = %@\ncell = %@", sender, cell);
+        [playlistSelectionViewController setDelegate:cell];
+        playlistSelectionViewController.managedObjectContext = self.managedObjectContext;
     } else {
+        //NSLog(@"sender = %@", sender);
         MPMediaQuery *songsQuery = [MPMediaQuery songsQuery];
         NSArray *songs = [songsQuery items];
         MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+        BOOL shuffleWasOn = NO;
+        if (musicPlayer.shuffleMode != MPMusicShuffleModeOff)
+        {
+            musicPlayer.shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
+        }
         [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:songs]];
-        [musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]]];
+        //[musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]]];
+        SongTableViewCell *cell = (SongTableViewCell *)sender;
+        [musicPlayer setNowPlayingItem:cell.song];
+        NSLog(@"song = %@", [cell.song valueForKey:MPMediaItemPropertyTitle]);
+        if (shuffleWasOn)
+            musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
         [musicPlayer play];
     }
 }

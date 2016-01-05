@@ -12,4 +12,6 @@
 
 @interface SongsViewController : UITableViewController <PerformSegueDelegate, ShowAlertControllerDelegate>
 
+@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end

@@ -10,10 +10,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "Playlist.h"
 #import "PlaylistTracks.h"
+#import "PlaylistSelectionViewController.h"
+
+@class SongTableViewCell;
 
 @protocol PerformSegueDelegate <NSObject>
 
-- (void)segueWithIdentifier:(NSString *)identifier fromCell:(UITableViewCell *)cell;
+- (void)segueWithIdentifier:(NSString *)identifier fromCell:(SongTableViewCell *)cell;
 
 @end
 
@@ -23,7 +26,7 @@
 
 @end
 
-@interface SongTableViewCell : UITableViewCell
+@interface SongTableViewCell : UITableViewCell <PlaylistSelectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *customCellTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *customCellDetailTextLabel;

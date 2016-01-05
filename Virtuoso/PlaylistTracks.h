@@ -17,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Insert code here to declare functionality of your managed object subclass
 
-+ (BOOL)checkIfPlaylistTrackWithPersistentId:(NSString *)persistentID existsInPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context;
++ (BOOL)checkIfPlaylistTrackWithPersistentId:(NSNumber *)persistentID existsInPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context;
 
-+ (void)addPlaylistTrackWithPersistentId:(NSString *)persistentId inPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context;
++ (void)addPlaylistTrackWithPersistentId:(NSNumber *)persistentId inPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
 

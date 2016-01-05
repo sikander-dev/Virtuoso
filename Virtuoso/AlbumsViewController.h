@@ -10,4 +10,6 @@
 
 @interface AlbumsViewController : UITableViewController
 
+@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end

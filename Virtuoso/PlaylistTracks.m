@@ -13,7 +13,7 @@
 
 // Insert code here to add functionality to your managed object subclass
 
-+ (BOOL)checkIfPlaylistTrackWithPersistentId:(NSString *)persistentID existsInPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context {
++ (BOOL)checkIfPlaylistTrackWithPersistentId:(NSNumber *)persistentID existsInPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context {
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PlaylistTracks"];
     request.predicate = [NSPredicate predicateWithFormat:@"persistentId = %@ && playlist = %@", persistentID, playlist];
@@ -32,11 +32,12 @@
     }
 }
 
-+ (void)addPlaylistTrackWithPersistentId:(NSString *)persistentId inPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context {
++ (void)addPlaylistTrackWithPersistentId:(NSNumber *)persistentId inPlaylist:(Playlist *)playlist inManagedObjectContext:(NSManagedObjectContext *)context {
     
     BOOL exists = [self checkIfPlaylistTrackWithPersistentId:persistentId existsInPlaylist:playlist inManagedObjectContext:context];
     if (!exists) {
         PlaylistTracks *playlistTrack = [NSEntityDescription insertNewObjectForEntityForName:@"PlaylistTracks" inManagedObjectContext:context];
+        NSLog(@"persistentId = %@", persistentId);
         playlistTrack.persistentId = persistentId;
         playlistTrack.playlist = playlist;
     }

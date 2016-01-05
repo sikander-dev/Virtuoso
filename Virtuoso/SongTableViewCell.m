@@ -31,13 +31,24 @@
 }
 
 - (void)addActionAddToPlaylist {
+    for (UIAlertAction *action in [self.alertController actions]) {
+        if ([action.title isEqualToString:@"Add to playlist"]) {
+            return;
+        }
+    }
     UIAlertAction *addToPlaylistAction = [UIAlertAction actionWithTitle:@"Add to playlist" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //NSLog(@"self = %@", self);
         [self.performSegueDelegate segueWithIdentifier:@"Playlist Selection Segue" fromCell:self];
     }];
     [self.alertController addAction:addToPlaylistAction];
 }
 
 - (void)addActionRemoveFromPlaylist {
+    for (UIAlertAction *action in [self.alertController actions]) {
+        if ([action.title isEqualToString:@"Remove from playlist"]) {
+            return;
+        }
+    }
     UIAlertAction *removeFromPlaylistAction = [UIAlertAction actionWithTitle:@"Remove from playlist" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         [self.managedObjectContext deleteObject:self.playlistTrackObject];
     }];
@@ -52,6 +63,7 @@
 
 - (void)selectedPlaylist:(Playlist *)playlist {
     //self.selectedPlaylist = playlist;
+    NSLog(@"song = %@", self.song);
     [PlaylistTracks addPlaylistTrackWithPersistentId:[self.song valueForKey:MPMediaItemPropertyPersistentID] inPlaylist:playlist inManagedObjectContext:self.managedObjectContext];
 }
 
