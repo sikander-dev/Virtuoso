@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SongTableViewCell.h"
+#import "PlaylistSelectionViewController.h"
 
-@interface AlbumSongsViewController : UITableViewController
+
+@interface AlbumSongsViewController : UITableViewController <PerformSegueDelegate, ShowAlertControllerDelegate>
 
 @property (strong, nonatomic) NSString *albumTitle;
 @property (strong, nonatomic) NSString *albumArtist;
@@ -17,4 +20,7 @@
 @property (strong, nonatomic) NSString *albumYear;
 @property (strong, nonatomic) NSArray *albumSongs;
 @property (strong, nonatomic) UIImage *albumArtwork;
+
+@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end

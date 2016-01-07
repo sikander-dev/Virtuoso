@@ -400,31 +400,47 @@
                                     <outlet property="albumYearLabel" destination="2Hf-En-tJR" id="Ums-Dj-aw6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Album Song Cell" textLabel="cEN-sc-wws" detailTextLabel="aZl-Ns-pmI" style="IBUITableViewCellStyleSubtitle" id="cXo-cI-Ui7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Album Song Cell" id="Z44-2m-Jyp" customClass="SongTableViewCell">
                                 <rect key="frame" x="0.0" y="236" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cXo-cI-Ui7" id="JSp-0K-7AZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z44-2m-Jyp" id="vJ0-zN-Kre">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cEN-sc-wws">
-                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgb-Hv-rRf">
+                                            <rect key="frame" x="249" y="7" width="30" height="30"/>
+                                            <state key="normal" title="..."/>
+                                            <connections>
+                                                <action selector="showOptions:" destination="Z44-2m-Jyp" eventType="touchUpInside" id="Hf7-Oc-ILo"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" verticalHuggingPriority="249" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGe-a9-HUS">
+                                            <rect key="frame" x="15" y="6" width="32" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aZl-Ns-pmI">
-                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dA4-oY-TC6">
+                                            <rect key="frame" x="15" y="26" width="41" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pgb-Hv-rRf" firstAttribute="centerY" secondItem="vJ0-zN-Kre" secondAttribute="centerY" id="9A0-Jw-t6C"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dA4-oY-TC6" secondAttribute="bottom" constant="-4" id="Crv-9U-Zcd"/>
+                                        <constraint firstItem="dA4-oY-TC6" firstAttribute="top" secondItem="sGe-a9-HUS" secondAttribute="bottom" id="Xj7-XI-efp"/>
+                                        <constraint firstItem="sGe-a9-HUS" firstAttribute="leading" secondItem="vJ0-zN-Kre" secondAttribute="leadingMargin" constant="7" id="YhL-gj-e9e"/>
+                                        <constraint firstItem="sGe-a9-HUS" firstAttribute="top" secondItem="vJ0-zN-Kre" secondAttribute="topMargin" constant="-2" id="ZCA-Oi-Djk"/>
+                                        <constraint firstItem="dA4-oY-TC6" firstAttribute="leading" secondItem="sGe-a9-HUS" secondAttribute="leading" id="bqp-wi-pcA"/>
+                                        <constraint firstItem="pgb-Hv-rRf" firstAttribute="trailing" secondItem="vJ0-zN-Kre" secondAttribute="trailingMargin" id="oCB-Ie-FLe"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="DwK-pD-Ixe" kind="push" id="snG-lF-Uik"/>
+                                    <outlet property="customCellDetailTextLabel" destination="dA4-oY-TC6" id="YRY-BH-GY7"/>
+                                    <outlet property="customCellTextLabel" destination="sGe-a9-HUS" id="OH7-jX-LMU"/>
+                                    <segue destination="DwK-pD-Ixe" kind="push" id="HeS-BS-rZb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -434,6 +450,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hRL-TS-LgB"/>
+                    <connections>
+                        <segue destination="jZ2-aX-9D6" kind="push" identifier="Playlist Selection Segue" id="VMW-SH-BG0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUB-RN-JBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -760,7 +779,7 @@
         <image name="Previous-icon" width="208" height="94"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XXI-RC-QFJ"/>
-        <segue reference="kFu-tz-a7L"/>
+        <segue reference="VMW-SH-BG0"/>
+        <segue reference="HeS-BS-rZb"/>
     </inferredMetricsTieBreakers>
 </document>

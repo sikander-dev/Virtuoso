@@ -94,12 +94,16 @@
         cell.albumArtworkImageView.image = self.albumArtwork;
         return cell;
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Album Song Cell" forIndexPath:indexPath];
+        SongTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Album Song Cell" forIndexPath:indexPath];
         MPMediaItem *song = self.albumSongs[indexPath.row-1];
-        cell.textLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
         NSNumber *songDuration = [song valueForProperty:MPMediaItemPropertyPlaybackDuration];
-        //NSLog(@"%@", songDuration);
-        cell.detailTextLabel.text = [PlaybackDurationToStringConverter getStringFromPlaybackDuration:songDuration];
+        cell.customCellTextLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
+        cell.customCellDetailTextLabel.text = [PlaybackDurationToStringConverter getStringFromPlaybackDuration:songDuration];
+        cell.song = song;
+        cell.managedObjectContext = self.managedObjectContext;
+        [cell setPerformSegueDelegate:self];
+        [cell setShowAlertControllerDelegate:self];
+        [cell addActionAddToPlaylist];
         return cell;
     }
 }
@@ -145,17 +149,44 @@
 }
 */
 
+- (void)showAlertController:(UIAlertController *)alertController {
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - Navigation
+
+- (void)segueWithIdentifier:(NSString *)identifier fromCell:(SongTableViewCell *)cell{
+    [self performSegueWithIdentifier:identifier sender:cell];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-    [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:self.albumSongs]];
-    [musicPlayer setNowPlayingItem:self.albumSongs[[[self.tableView indexPathForSelectedRow] row] - 1]];
-    [musicPlayer play];
+    if ([[segue identifier] isEqualToString:@"Playlist Selection Segue"]) {
+        PlaylistSelectionViewController *playlistSelectionViewController = [segue destinationViewController];
+        SongTableViewCell *cell = (SongTableViewCell *)sender;
+        //NSLog(@"sender = %@\ncell = %@", sender, cell);
+        [playlistSelectionViewController setDelegate:cell];
+        playlistSelectionViewController.managedObjectContext = self.managedObjectContext;
+    } else {
+        //NSLog(@"sender = %@", sender);
+        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+        BOOL shuffleWasOn = NO;
+        if (musicPlayer.shuffleMode != MPMusicShuffleModeOff)
+        {
+            musicPlayer.shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
+        }
+        [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:self.albumSongs]];
+        //[musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]] - 1];
+        SongTableViewCell *cell = (SongTableViewCell *)sender;
+        [musicPlayer setNowPlayingItem:cell.song];
+        //NSLog(@"song = %@", [cell.song valueForKey:MPMediaItemPropertyTitle]);
+        if (shuffleWasOn)
+            musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
+        [musicPlayer play];
+    }
 }
 
 

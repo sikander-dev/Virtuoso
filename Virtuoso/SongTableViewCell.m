@@ -26,8 +26,21 @@
     self.alertController = [UIAlertController alertControllerWithTitle:@"More Options" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
 }
+
 - (IBAction)showOptions:(UIButton *)sender {
+    [self addActionCancel];
     [self.showAlertControllerDelegate showAlertController:self.alertController];
+}
+
+- (void)addActionCancel {
+    for (UIAlertAction *action in [self.alertController actions]) {
+        if ([action.title isEqualToString:@"Cancel"]) {
+            return;
+        }
+    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    [self.alertController addAction:cancelAction];
 }
 
 - (void)addActionAddToPlaylist {

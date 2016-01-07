@@ -120,6 +120,7 @@
     MPMediaItem *selectedAlbum = [albums[[[self.tableView indexPathForSelectedRow] row]] representativeItem];
     albumSongsViewController.albumTitle = [selectedAlbum valueForProperty:MPMediaItemPropertyAlbumTitle];
     albumSongsViewController.albumArtist = [selectedAlbum valueForProperty:MPMediaItemPropertyAlbumArtist];
+    albumSongsViewController.managedObjectContext = self.managedObjectContext;
     //NSLog(@"AlbumsViewController prepared for segue");
 }
 
