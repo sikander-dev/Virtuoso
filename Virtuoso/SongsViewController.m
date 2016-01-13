@@ -125,19 +125,25 @@
         NSArray *songs = [songsQuery items];
         MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
         BOOL shuffleWasOn = NO;
+        NSLog(@"shuffleMode = %ld", (long)musicPlayer.shuffleMode);
         if (musicPlayer.shuffleMode != MPMusicShuffleModeOff)
         {
             musicPlayer.shuffleMode = MPMusicShuffleModeOff;
             shuffleWasOn = YES;
         }
+        [musicPlayer pause];
         [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:songs]];
-        //[musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]]];
+        [musicPlayer setNowPlayingItem:songs[[[self.tableView indexPathForSelectedRow] row]]];
         SongTableViewCell *cell = (SongTableViewCell *)sender;
-        [musicPlayer setNowPlayingItem:cell.song];
+        //[musicPlayer setNowPlayingItem:cell.song];
         NSLog(@"song = %@", [cell.song valueForKey:MPMediaItemPropertyTitle]);
+        NSLog(@"shuffleMode = %ld", (long)musicPlayer.shuffleMode);
+        NSLog(@"now playing = %@", [musicPlayer.nowPlayingItem valueForKey:MPMediaItemPropertyTitle]);
         if (shuffleWasOn)
             musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
         [musicPlayer play];
+        NSLog(@"shuffleMode = %ld", (long)musicPlayer.shuffleMode);
+        NSLog(@"now playing = %@", [musicPlayer.nowPlayingItem valueForKey:MPMediaItemPropertyTitle]);
     }
 }
 

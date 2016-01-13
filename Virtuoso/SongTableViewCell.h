@@ -32,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *customCellDetailTextLabel;
 @property (strong, nonatomic) UIAlertController *alertController;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (weak, nonatomic) MPMediaItem *song;
+@property (strong, nonatomic) MPMediaItem *song;
 
 @property (weak, nonatomic) PlaylistTracks *playlistTrackObject;
 
