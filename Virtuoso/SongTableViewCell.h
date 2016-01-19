@@ -14,33 +14,20 @@
 
 @class SongTableViewCell;
 
-@protocol PerformSegueDelegate <NSObject>
-
-- (void)segueWithIdentifier:(NSString *)identifier fromCell:(SongTableViewCell *)cell;
-
-@end
-
 @protocol ShowAlertControllerDelegate <NSObject>
 
-- (void)showAlertController:(UIAlertController *)alertController;
+- (void)optionsButtonClickedFromCell:(SongTableViewCell *)cell;
 
 @end
 
-@interface SongTableViewCell : UITableViewCell <PlaylistSelectionDelegate>
+@interface SongTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *customCellTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *customCellDetailTextLabel;
-@property (strong, nonatomic) UIAlertController *alertController;
-@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) MPMediaItem *song;
 
-@property (weak, nonatomic) PlaylistTracks *playlistTrackObject;
+@property (strong, nonatomic) PlaylistTracks *playlistTrack;
 
-@property (weak, nonatomic) id<PerformSegueDelegate> performSegueDelegate;
-@property (weak, nonatomic) id<ShowAlertControllerDelegate> showAlertControllerDelegate;
-
-- (void)addActionAddToPlaylist;
-
-- (void)addActionRemoveFromPlaylist;
+@property (weak, nonatomic) id<ShowAlertControllerDelegate> delegate;
 
 @end

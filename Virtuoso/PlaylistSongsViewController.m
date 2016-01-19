@@ -41,7 +41,7 @@
     NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"persistentId" ascending:YES];
     [request setSortDescriptors:@[nameSort]];
     [request setPredicate:[NSPredicate predicateWithFormat:@"playlist = %@", self.playlist]];
-    NSLog(@"playlist name = %@", self.playlist.name);
+    //NSLog(@"playlist name = %@", self.playlist.name);
     [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil]];
     [[self fetchedResultsController] setDelegate:self];
     
@@ -66,7 +66,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    NSLog(@"number of rows = %lu", [[[self fetchedResultsController] sections][section] numberOfObjects]);
+    //NSLog(@"number of rows = %lu", [[[self fetchedResultsController] sections][section] numberOfObjects]);
     return [[[self fetchedResultsController] sections][section] numberOfObjects];
 }
 
@@ -74,16 +74,13 @@
     id object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     PlaylistTracks *playlistTrack = (PlaylistTracks *)object;
     SongTableViewCell *songTableViewCell = (SongTableViewCell *)cell;
-    NSLog(@"playlistTrack = %@", playlistTrack);
+    //NSLog(@"playlistTrack = %@", playlistTrack);
     MPMediaItem *song = [self getSongFromPersistentId:playlistTrack.persistentId];
     songTableViewCell.customCellTextLabel.text = [song valueForKey:MPMediaItemPropertyTitle];
     songTableViewCell.customCellDetailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
-    songTableViewCell.playlistTrackObject = playlistTrack;
+    songTableViewCell.playlistTrack = playlistTrack;
     songTableViewCell.song = song;
-    songTableViewCell.managedObjectContext = self.managedObjectContext;
-    [songTableViewCell setShowAlertControllerDelegate:self];
-    [songTableViewCell addActionAddToPlaylist];
-    [songTableViewCell addActionRemoveFromPlaylist];
+    [songTableViewCell setDelegate:self];
 }
 
 - (MPMediaItem *)getSongFromPersistentId:(NSNumber *)persistentId {
@@ -94,7 +91,7 @@
     MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:persistentId forProperty:MPMediaItemPropertyPersistentID];
     [songQuery addFilterPredicate:predicate];
     if ([songQuery items].count == 1) {
-        NSLog(@"[songQuery items] = %@",[songQuery items]);
+        //NSLog(@"[songQuery items] = %@",[songQuery items]);
         return [[songQuery items] firstObject];
     }}
     return nil;
@@ -146,30 +143,44 @@
     [[self tableView] endUpdates];
 }
 
-- (void)showAlertController:(UIAlertController *)alertController {
-    [self presentViewController:alertController animated:YES completion:nil];
+- (void)optionsButtonClickedFromCell:(SongTableViewCell *)cell {
+    OptionsAlertController *alertController = [[OptionsAlertController alloc] initWithTitle:@"More options" andManagedObjectContext:self.managedObjectContext];
+    [alertController setDelegate:self];
+    [alertController addActionAddToPlaylistForSongWithPersistentId:[cell.song valueForKey:MPMediaEntityPropertyPersistentID]];
+    [alertController addActionRemoveFromPlaylistForPlaylistTrack:cell.playlistTrack];
+    [alertController presentOptionsAlertFromController:self];
 }
 
 #pragma mark - Navigation
+
+- (void)addToPlaylistActionSelectedFromAlertController:(OptionsAlertController *)alertController {
+    [self performSegueWithIdentifier:@"Playlist Selection Segue" sender:alertController];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
-    [musicPlayer stop];
-    BOOL shuffleWasOn = NO;
-    if (musicPlayer.shuffleMode != MPMusicShuffleModeOff)
-    {
-        musicPlayer.shuffleMode = MPMusicShuffleModeOff;
-        shuffleWasOn = YES;
+    if ([[segue identifier] isEqualToString:@"Playlist Selection Segue"]) {
+        PlaylistSelectionViewController *playlistSelectionViewController = [segue destinationViewController];
+        OptionsAlertController *alertController = (OptionsAlertController *)sender;
+        [playlistSelectionViewController setDelegate:alertController];
+        playlistSelectionViewController.managedObjectContext = self.managedObjectContext;
+    } else {
+        MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+        BOOL shuffleWasOn = NO;
+        if (musicPlayer.shuffleMode != MPMusicShuffleModeOff)
+        {
+            musicPlayer.shuffleMode = MPMusicShuffleModeOff;
+            shuffleWasOn = YES;
+        }
+        [musicPlayer pause];
+        [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:self.songArray]];
+        [musicPlayer setNowPlayingItem:self.songArray[[[self.tableView indexPathForSelectedRow] row]]];
+        if (shuffleWasOn)
+            musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
+        [musicPlayer play];
     }
-    [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:self.songArray]];
-    [musicPlayer setNowPlayingItem:self.songArray[[[self.tableView indexPathForSelectedRow] row]]];
-    if (shuffleWasOn)
-        musicPlayer.shuffleMode = MPMusicShuffleModeSongs;
-    [musicPlayer play];
-
 }
 
 

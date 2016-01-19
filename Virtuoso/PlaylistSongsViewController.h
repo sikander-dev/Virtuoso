@@ -10,8 +10,9 @@
 #import <CoreData/CoreData.h>
 #import "Playlist.h"
 #import "SongTableViewCell.h"
+#import "OptionsAlertController.h"
 
-@interface PlaylistSongsViewController : UITableViewController <NSFetchedResultsControllerDelegate, ShowAlertControllerDelegate>
+@interface PlaylistSongsViewController : UITableViewController <NSFetchedResultsControllerDelegate, PerformSegueDelegate, ShowAlertControllerDelegate>
 
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) Playlist *playlist;

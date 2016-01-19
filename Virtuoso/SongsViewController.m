@@ -57,10 +57,7 @@
     cell.customCellTextLabel.text = [song valueForProperty:MPMediaItemPropertyTitle];
     cell.customCellDetailTextLabel.text = [song valueForProperty:MPMediaItemPropertyArtist];
     cell.song = song;
-    cell.managedObjectContext = self.managedObjectContext;
-    [cell setPerformSegueDelegate:self];
-    [cell setShowAlertControllerDelegate:self];
-    [cell addActionAddToPlaylist];
+    [cell setDelegate:self];
     return cell;
 }
 
@@ -99,14 +96,17 @@
 }
 */
 
-- (void)showAlertController:(UIAlertController *)alertController {
-    [self presentViewController:alertController animated:YES completion:nil];
+- (void)optionsButtonClickedFromCell:(SongTableViewCell *)cell {
+    OptionsAlertController *alertController = [[OptionsAlertController alloc] initWithTitle:@"More options" andManagedObjectContext:self.managedObjectContext];
+    [alertController setDelegate:self];
+    [alertController addActionAddToPlaylistForSongWithPersistentId:[cell.song valueForKey:MPMediaEntityPropertyPersistentID]];
+    [alertController presentOptionsAlertFromController:self];
 }
 
 #pragma mark - Navigation
 
-- (void)segueWithIdentifier:(NSString *)identifier fromCell:(SongTableViewCell *)cell{
-    [self performSegueWithIdentifier:identifier sender:cell];
+- (void)addToPlaylistActionSelectedFromAlertController:(OptionsAlertController *)alertController {
+    [self performSegueWithIdentifier:@"Playlist Selection Segue" sender:alertController];
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -115,9 +115,8 @@
     // Pass the selected object to the new view controller.
     if ([[segue identifier] isEqualToString:@"Playlist Selection Segue"]) {
         PlaylistSelectionViewController *playlistSelectionViewController = [segue destinationViewController];
-        SongTableViewCell *cell = (SongTableViewCell *)sender;
-        //NSLog(@"sender = %@\ncell = %@", sender, cell);
-        [playlistSelectionViewController setDelegate:cell];
+        OptionsAlertController *alertController = (OptionsAlertController *)sender;
+        [playlistSelectionViewController setDelegate:alertController];
         playlistSelectionViewController.managedObjectContext = self.managedObjectContext;
     } else {
         //NSLog(@"sender = %@", sender);

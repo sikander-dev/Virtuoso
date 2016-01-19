@@ -49,6 +49,7 @@
 		FAF417821C0EE6A800E88DE3 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF417801C0EE6A800E88DE3 /* YTPlayerView.m */; };
 		FAF417841C0EEA1A00E88DE3 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAF417831C0EEA1A00E88DE3 /* Assets.bundle */; };
 		FAF417871C0F125600E88DE3 /* YTPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF417861C0F125600E88DE3 /* YTPlayerViewController.m */; };
+		FAF4C27C1C4E425900C01712 /* OptionsAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF4C27B1C4E425900C01712 /* OptionsAlertController.m */; };
 		FAFE07C31C1EFB7600D32D0F /* PlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFE07C21C1EFB7600D32D0F /* PlaylistsViewController.m */; };
 		FAFE07C61C24173900D32D0F /* SongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFE07C51C24173900D32D0F /* SongTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -147,6 +148,8 @@
 		FAF417831C0EEA1A00E88DE3 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Assets.bundle; path = "../../../Downloads/youtube-ios-player-helper-master/youtube-ios-player-helper/Assets.bundle"; sourceTree = "<group>"; };
 		FAF417851C0F125600E88DE3 /* YTPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTPlayerViewController.h; sourceTree = "<group>"; };
 		FAF417861C0F125600E88DE3 /* YTPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTPlayerViewController.m; sourceTree = "<group>"; };
+		FAF4C27A1C4E425900C01712 /* OptionsAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsAlertController.h; sourceTree = "<group>"; };
+		FAF4C27B1C4E425900C01712 /* OptionsAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsAlertController.m; sourceTree = "<group>"; };
 		FAFE07C11C1EFB7600D32D0F /* PlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistsViewController.h; sourceTree = "<group>"; };
 		FAFE07C21C1EFB7600D32D0F /* PlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistsViewController.m; sourceTree = "<group>"; };
 		FAFE07C41C24173900D32D0F /* SongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewCell.h; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				FA1FC6E01BDFB4B800FCEE65 /* AlbumInfoCell.m */,
 				FAFE07C41C24173900D32D0F /* SongTableViewCell.h */,
 				FAFE07C51C24173900D32D0F /* SongTableViewCell.m */,
+				FAF4C27A1C4E425900C01712 /* OptionsAlertController.h */,
+				FAF4C27B1C4E425900C01712 /* OptionsAlertController.m */,
 				FAA390551C282EEB00EFAE19 /* PlaylistSelectionViewController.h */,
 				FAA390561C282EEB00EFAE19 /* PlaylistSelectionViewController.m */,
 				FAF417431C0DC0D100E88DE3 /* YTResultsViewController.h */,
@@ -430,6 +435,7 @@
 				FA1FC6E41BDFB6A300FCEE65 /* AlbumSongsViewController.m in Sources */,
 				FA1FC6E11BDFB4B800FCEE65 /* AlbumInfoCell.m in Sources */,
 				FAF417751C0DC95B00E88DE3 /* AFURLSessionManager.m in Sources */,
+				FAF4C27C1C4E425900C01712 /* OptionsAlertController.m in Sources */,
 				FAF417761C0DC95B00E88DE3 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FAF417821C0EE6A800E88DE3 /* YTPlayerView.m in Sources */,
 				FAEE496C1BE39EF8006ED818 /* NowPlayingViewController.m in Sources */,
