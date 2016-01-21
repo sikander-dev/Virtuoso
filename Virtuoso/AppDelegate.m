@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MusicViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <UIKit/UIKit.h>
 
 @interface AppDelegate ()
 
@@ -22,6 +24,31 @@
     UINavigationController *navigationController = [[tabBarController viewControllers] firstObject];
     MusicViewController *musicViewController = (MusicViewController *)navigationController.topViewController;
     musicViewController.managedObjectContext = self.managedObjectContext;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *persistentId = [defaults objectForKey:@"nowPlayingSongId"];
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    [musicPlayer stop];
+    //[musicPlayer setNowPlayingItem:nil];
+    if (persistentId) {
+        NSNumber *currentPlaybackTime = [defaults objectForKey:@"currentPlaybackTime"];
+        if (!currentPlaybackTime) {
+            currentPlaybackTime = [NSNumber numberWithInt:0];
+        }
+        MPMediaQuery *songQuery = [MPMediaQuery songsQuery];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:persistentId forProperty:MPMediaItemPropertyPersistentID];
+        [songQuery addFilterPredicate:predicate];
+        if ([songQuery items].count == 1) {
+            [musicPlayer setQueueWithItemCollection:[MPMediaItemCollection collectionWithItems:[songQuery items]]];
+            [musicPlayer setNowPlayingItem:[[songQuery items] firstObject]];
+            //NSLog(@"songQueryItem = %@",[[[songQuery items] firstObject] valueForKey:MPMediaItemPropertyTitle]);
+            //NSLog(@"Now Playing Song = %@",[musicPlayer.nowPlayingItem valueForKey:MPMediaItemPropertyTitle]);
+            [musicPlayer setCurrentPlaybackTime:[currentPlaybackTime doubleValue]];
+        } else {
+            NSLog(@"2 songs found with same persistentId!!! WTF??");
+        }
+    } else {
+        NSLog(@"persistentId is null");
+    }
     return YES;
 }
 
@@ -33,6 +60,23 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    if (musicPlayer.playbackState != MPMusicPlaybackStatePlaying) {
+        [self setNSUserDefaults];
+    }
+}
+
+- (void)setNSUserDefaults {
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (musicPlayer.nowPlayingItem) {
+        [defaults setObject:[musicPlayer.nowPlayingItem valueForKey:MPMediaEntityPropertyPersistentID] forKey:@"nowPlayingSongId"];
+        [defaults setObject:[NSNumber numberWithInt:musicPlayer.currentPlaybackTime] forKey:@"currentPlaybackTime"];
+        [defaults synchronize];
+        NSLog(@"NSUserDefaults saved");
+    } else {
+        [defaults setObject:nil forKey:@"nowPlayingSongId"];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -46,6 +90,9 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    [self setNSUserDefaults];
+    [musicPlayer stop];
     [self saveContext];
 }
 

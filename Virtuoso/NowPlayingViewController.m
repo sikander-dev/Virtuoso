@@ -135,7 +135,29 @@
 }
 
 - (void)handlePlaybackStateChanged:(id)notification {
+    /*
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
+    {
+        if (self.musicPlayer.playbackState != MPMusicPlaybackStatePlaying) {
+            [self setNSUserDefaults];
+        }
+    }
+     */
     [self updatePlayPauseButton];
+}
+
+- (void)setNSUserDefaults {
+    MPMusicPlayerController *musicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (musicPlayer.nowPlayingItem) {
+        [defaults setObject:[musicPlayer.nowPlayingItem valueForKey:MPMediaEntityPropertyPersistentID] forKey:@"nowPlayingSongId"];
+        [defaults setObject:[NSNumber numberWithInt:musicPlayer.currentPlaybackTime] forKey:@"currentPlaybackTime"];
+        [defaults synchronize];
+        NSLog(@"NSUserDefaults saved");
+    } else {
+        [defaults setObject:nil forKey:@"nowPlayingSongId"];
+    }
 }
 
 - (IBAction)playPause:(UIButton *)sender {

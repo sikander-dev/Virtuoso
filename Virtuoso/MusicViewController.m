@@ -22,6 +22,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *persistentId = [defaults objectForKey:@"nowPlayingSongId"];
+    if (!persistentId) {
+        /*
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No song found" message:@"Last now playing song not found." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+         */
+    } else {
+        NSLog(@"persistentId is not null2");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
