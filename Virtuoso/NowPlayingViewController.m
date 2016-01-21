@@ -30,7 +30,6 @@
     self.musicPlayer = [MPMusicPlayerController systemMusicPlayer];
     [self setupVolumeSlider];
     [self registerMediaPlayerNotifications];
-    
 }
 
 - (void)setupVolumeSlider {

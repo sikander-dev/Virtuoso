@@ -21,6 +21,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    for (UITabBarItem* item in tabBarController.tabBar.items)
+    {
+        [item setTitlePositionAdjustment:UIOffsetMake(0, -15)];
+    }
     UINavigationController *navigationController = [[tabBarController viewControllers] firstObject];
     MusicViewController *musicViewController = (MusicViewController *)navigationController.topViewController;
     musicViewController.managedObjectContext = self.managedObjectContext;

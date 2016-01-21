@@ -238,12 +238,12 @@
 				FA8A3D811C1AE56C00C1D7F2 /* PlaylistTracks.m */,
 				FAD057611BDA1F7F00488444 /* AppDelegate.h */,
 				FAD057621BDA1F7F00488444 /* AppDelegate.m */,
+				FAD057641BDA1F7F00488444 /* Virtuoso.xcdatamodeld */,
 				FAF417461C0DC95B00E88DE3 /* AFNetworking */,
 				FAF4175A1C0DC95B00E88DE3 /* UIKit+AFNetworking */,
 				FAF417831C0EEA1A00E88DE3 /* Assets.bundle */,
 				FAD0576D1BDA1F7F00488444 /* Images.xcassets */,
 				FAD0576F1BDA1F7F00488444 /* LaunchScreen.xib */,
-				FAD057641BDA1F7F00488444 /* Virtuoso.xcdatamodeld */,
 				FAD0575D1BDA1F7F00488444 /* Supporting Files */,
 			);
 			path = Virtuoso;

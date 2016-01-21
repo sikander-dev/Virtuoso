@@ -43,4 +43,14 @@
     }
 }
 
++ (NSUInteger)countTracksWithNullPlaylistInManagedObjectContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PlaylistTracks"];
+    request.predicate = [NSPredicate predicateWithFormat:@"playlist = nil"];
+    NSArray *matches = [context executeFetchRequest:request error:nil];
+    for (PlaylistTracks *playlistTrack in matches) {
+        [context deleteObject:playlistTrack];
+    }
+    return matches.count;
+}
+
 @end
