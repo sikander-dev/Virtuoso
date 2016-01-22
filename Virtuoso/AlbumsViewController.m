@@ -64,7 +64,7 @@
     MPMediaItem *album = [albums[indexPath.row] representativeItem];
     cell.textLabel.text = [album valueForProperty:MPMediaItemPropertyAlbumTitle];
     cell.detailTextLabel.text = [album valueForProperty:MPMediaItemPropertyAlbumArtist];
-    UIImage *artworkImage = [[album valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:CGSizeMake(44, 44)];
+    UIImage *artworkImage = [[album valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:cell.imageView.bounds.size];
     if (artworkImage) {
         cell.imageView.image = artworkImage;
     } else {

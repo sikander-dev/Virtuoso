@@ -539,7 +539,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Bz-7w-XsC">
-                                <rect key="frame" x="16" y="28" width="288" height="292"/>
+                                <rect key="frame" x="16" y="28" width="288" height="293"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80Q-QM-V45" userLabel="Music control Image View">
                                 <rect key="frame" x="16" y="328" width="288" height="220"/>
@@ -550,39 +550,35 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rgi-hU-whw">
-                                <rect key="frame" x="36" y="340" width="95" height="61"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-gf-t4r">
-                                <rect key="frame" x="139" y="248" width="42" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-gf-t4r">
+                                <rect key="frame" x="139" y="247" width="42" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ch-Id-ySk">
-                                <rect key="frame" x="260" y="340" width="44" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ch-Id-ySk">
+                                <rect key="frame" x="259" y="340" width="45" height="60"/>
                                 <state key="normal" title="Button" image="Next-icon"/>
                                 <connections>
                                     <action selector="nextSong:" destination="DwK-pD-Ixe" eventType="touchUpInside" id="Avc-da-v0n"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opo-2z-gW0">
-                                <rect key="frame" x="208" y="340" width="44" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opo-2z-gW0">
+                                <rect key="frame" x="207" y="340" width="44" height="60"/>
                                 <state key="normal" title="Button" image="Play-icon"/>
                                 <connections>
                                     <action selector="playPause:" destination="DwK-pD-Ixe" eventType="touchUpInside" id="bto-Gb-VWC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="et4-ga-gdJ">
-                                <rect key="frame" x="155" y="340" width="45" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="et4-ga-gdJ">
+                                <rect key="frame" x="155" y="340" width="45" height="60"/>
                                 <state key="normal" title="Button" image="Previous-icon"/>
                                 <connections>
                                     <action selector="previousSong:" destination="DwK-pD-Ixe" eventType="touchUpInside" id="8OP-Uu-FaK"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18r-1i-vme">
-                                <rect key="frame" x="276" y="486" width="42" height="21"/>
+                                <rect key="frame" x="276" y="485" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -594,7 +590,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqi-e5-JuG">
-                                <rect key="frame" x="53" y="424" width="57" height="30"/>
+                                <rect key="frame" x="53" y="423" width="57" height="30"/>
                                 <state key="normal" title="Youtube"/>
                                 <connections>
                                     <action selector="youtubeButtonPressed:" destination="DwK-pD-Ixe" eventType="touchUpInside" id="pRa-8j-o8N"/>
@@ -606,6 +602,10 @@
                                     <action selector="currentPlaybackTimeChanged:" destination="DwK-pD-Ixe" eventType="valueChanged" id="0F5-Oy-61q"/>
                                 </connections>
                             </slider>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgi-hU-whw">
+                                <rect key="frame" x="36" y="340" width="95" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -784,6 +784,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2OP-UX-8YT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-179.73333333333332" y="-301.98666666666668"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UpW-DF-cgO">
+            <objects>
+                <viewController id="8Oa-oh-vVw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="frI-F8-wFg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YyU-Jh-mr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QuC-4v-0AS">
+            <objects>
+                <viewController id="V5z-pX-Wle" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8B2-So-bRy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSS-bP-dFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
