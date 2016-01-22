@@ -39,7 +39,8 @@
     [parameters setObject:@"snippet" forKey:@"part"];
     [parameters setObject:@"5" forKey:@"maxResults"];
     //[parameters setObject:@"viewCount" forKey:@"order"];
-    [parameters setObject:self.queryString forKey:@"q"];
+    
+    [parameters setObject: self.queryString forKey:@"q"];
     [parameters setObject:@"video" forKey:@"type"];
     [parameters setObject:API_KEY forKey:@"key"];
     [manager GET:[NSString stringWithFormat:@"%@search", baseURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {

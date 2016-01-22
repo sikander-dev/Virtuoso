@@ -210,7 +210,13 @@
     if ([segue.identifier isEqualToString:@"YT Results Segue"]) {
         YTResultsViewController *destinationViewController = [segue destinationViewController];
         MPMediaItem *currentSong = [self.musicPlayer nowPlayingItem];
-        destinationViewController.queryString = [NSString stringWithFormat:@"%@ %@", [currentSong valueForProperty:MPMediaItemPropertyTitle], [currentSong valueForProperty:MPMediaItemPropertyArtist]];
+        NSString *songTitle = [currentSong valueForProperty:MPMediaItemPropertyTitle];
+        NSString *artistName = [currentSong valueForProperty:MPMediaItemPropertyArtist];
+        if (!artistName) {
+            artistName = @"";
+        }
+        destinationViewController.queryString = [NSString stringWithFormat:@"%@ %@", songTitle, artistName];
+        NSLog(@"queryString = %@", destinationViewController.queryString);
     }
     
 }
