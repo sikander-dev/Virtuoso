@@ -14,6 +14,7 @@
 
 @interface YTResultsViewController ()
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @end
 
 @implementation YTResultsViewController
@@ -27,6 +28,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.title = @"Youtube Results";
+    self.spinner.center = self.tableView.center;
+    [self.tableView addSubview:self.spinner];
+    [self.tableView bringSubviewToFront:self.spinner];
+    [self.spinner startAnimating];
     NSString *baseURL = @"https://www.googleapis.com/youtube/v3/";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -38,16 +44,28 @@
     [parameters setObject:API_KEY forKey:@"key"];
     [manager GET:[NSString stringWithFormat:@"%@search", baseURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success");
-        self.results = responseObject;
-        //NSLog(@"%@", responseObject);
-        self.title = @"Youtube Results";
-        [self.tableView reloadData];
+        self.results = [responseObject objectForKey:@"items"];
+        //NSLog(@"%@", self.results);
+        [self.spinner stopAnimating];
+        if (self.results.count == 0) {
+            [self showErrorAlertController];
+        } else {
+            [self.tableView reloadData];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Failed");
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alertView show];
+        [self.spinner stopAnimating];
+        [self showErrorAlertController];
     }];
     
+}
+
+- (void)showErrorAlertController {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Youtube results could not be fetched." preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +82,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return 5;
+    return self.results.count;
 }
 
 
@@ -72,13 +90,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YT Result Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    //NSLog(@"%lu", [indexPath row]);
-    NSArray *results = [self.results objectForKey:@"items"];
-    //NSLog(@"%@", results);
-    NSString *thumbnailURLString = [[[[results[[indexPath row]] objectForKey:@"snippet"] objectForKey:@"thumbnails"] objectForKey:@"default"] objectForKey:@"url"];
+    NSDictionary *snippetObject = [self.results[[indexPath row]] objectForKey:@"snippet"];
+    NSString *thumbnailURLString = [[[snippetObject objectForKey:@"thumbnails"] objectForKey:@"default"] objectForKey:@"url"];
     //NSLog(@"thumbnailURLString = %@", thumbnailURLString);
-    NSString *videoTitle = [[results[[indexPath row]] objectForKey:@"snippet"] objectForKey:@"title"];
-    NSString *videoChannelTitle = [[results[[indexPath row]] objectForKey:@"snippet"] objectForKey:@"channelTitle"];
+    NSString *videoTitle = [snippetObject objectForKey:@"title"];
+    NSString *videoChannelTitle = [snippetObject objectForKey:@"channelTitle"];
     //NSLog(@"video and channel - %@ - %@", videoTitle, videoChannelTitle);
     NSURL *thumbnailURL = [NSURL URLWithString:thumbnailURLString];
     //NSLog(@"%@", thumbnailURL);
@@ -135,9 +151,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"YT Player Segue"]) {
-        NSArray *results = [self.results objectForKey:@"items"];
         YTPlayerViewController *destinationViewController = [segue destinationViewController];
-        destinationViewController.videoID = [[results[[[self.tableView indexPathForSelectedRow] row]] objectForKey:@"id"] objectForKey:@"videoId"];
+        destinationViewController.videoID = [[self.results[[[self.tableView indexPathForSelectedRow] row]] objectForKey:@"id"] objectForKey:@"videoId"];
     }
     
 }

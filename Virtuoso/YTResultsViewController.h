@@ -11,6 +11,6 @@
 @interface YTResultsViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *queryString;
-@property (strong, nonatomic) NSDictionary *results;
+@property (strong, nonatomic) NSArray *results;
 
 @end

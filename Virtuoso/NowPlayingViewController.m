@@ -94,16 +94,21 @@
         songTitle = @"Unknown title";
     }
     self.titleLabel.text = songTitle;
-    
+    NSString *artistAlbumLabelText;
     NSString *artistName = [currentSong valueForProperty:MPMediaItemPropertyArtist];
     if (!artistName) {
-        artistName = @"Unknown artist";
+        artistName = @"";
     }
+    artistAlbumLabelText = artistName;
     NSString *albumName = [currentSong valueForProperty:MPMediaItemPropertyAlbumTitle];
     if (!albumName) {
-        albumName = @"Unknown album";
+        albumName = @"";
     }
-    self.artistAlbumLabel.text = [NSString stringWithFormat:@"%@/%@", artistName, albumName];
+    if (![albumName isEqualToString:@""]) {
+        artistAlbumLabelText = [artistAlbumLabelText stringByAppendingString:[NSString stringWithFormat:@"/%@", albumName]];
+    }
+    self.artistAlbumLabel.text = artistAlbumLabelText;
+    //self.artistAlbumLabel.text = [NSString stringWithFormat:@"%@/%@", artistName, albumName];
 
 }
 
@@ -189,6 +194,12 @@
     [self.musicPlayer endGeneratingPlaybackNotifications];
 }
 
+- (IBAction)youtubeButtonPressed:(UIButton *)sender {
+    
+    if (self.musicPlayer.nowPlayingItem) {
+        [self performSegueWithIdentifier:@"YT Results Segue" sender:sender];
+    }
+}
 
 #pragma mark - Navigation
 
