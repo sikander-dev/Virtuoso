@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *nowPlayingSlider;
 @property (weak, nonatomic) IBOutlet UILabel *playbackDurationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentPlaybackTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
 @end
 
 @implementation NowPlayingViewController
@@ -37,8 +38,7 @@
     self.volumeViewParentView.backgroundColor = [UIColor clearColor];
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:self.volumeViewParentView.bounds];
     [self.volumeViewParentView addSubview:volumeView];
-    //[volumeView release];
-    
+    volumeView.center = CGPointMake(self.volumeViewParentView.bounds.size.width / 2, self.volumeViewParentView.bounds.size.height / 2);
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -53,6 +53,8 @@
     [self updateCurrentPlaybackTime];
     
     [self updatePlaybackDuration];
+    
+    [self updateShuffleButton];
     
 }
 
@@ -122,6 +124,14 @@
     }
 }
 
+- (void)updateShuffleButton {
+    if (self.musicPlayer.shuffleMode == MPMusicShuffleModeOff) {
+        self.shuffleButton.selected = NO;
+    } else {
+        self.shuffleButton.selected = YES;
+    }
+}
+
 - (void)registerMediaPlayerNotifications {
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -184,6 +194,15 @@
     if (self.musicPlayer.nowPlayingItem) {
         NSTimeInterval currentPlaybackTime = self.nowPlayingSlider.value * [[self.musicPlayer.nowPlayingItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
         self.musicPlayer.currentPlaybackTime = currentPlaybackTime;
+    }
+}
+- (IBAction)shuffleButtonClicked:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.musicPlayer setShuffleMode:MPMusicShuffleModeSongs];
+    } else {
+        [self.musicPlayer setShuffleMode:MPMusicShuffleModeOff];
     }
 }
 
